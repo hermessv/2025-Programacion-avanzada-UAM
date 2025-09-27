@@ -10,8 +10,35 @@ class Program
             { "USD", 1.0m },
             { "EUR", 0.95m },
             { "MXN", 17.0m },
-            { "JPY", 150.0m }
+            { "JPY", 150.0m },
+            // Direct rate example
+            { "USD/GBP", 0.8m },
+            // Inverse rate example (no direct USD/CHF, but CHF/USD exists)
+            { "CHF/USD", 1.1m }
         };
+        // Test 6: Direct rate USD to GBP
+        string log6;
+        decimal result6 = ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "USD", "GBP", exchangeRates, out log6);
+        Console.WriteLine($"100 USD to GBP (direct rate): {result6} (Expected: 80)");
+        Console.WriteLine(log6);
+
+        // Test 7: Inverse rate USD to CHF (only CHF/USD exists)
+        string log7;
+        decimal result7 = ConvertidorDeMonedas.MiConvertidorDeMonedas(110, "USD", "CHF", exchangeRates, out log7);
+        Console.WriteLine($"110 USD to CHF (inverse rate): {result7} (Expected: 100)");
+        Console.WriteLine(log7);
+
+        // Test 8: Unsupported currency
+        try
+        {
+            string log8;
+            ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "USD", "ABC", exchangeRates, out log8);
+            Console.WriteLine("Test failed: Exception not thrown for unsupported currency.");
+        }
+        catch (ArgumentException)
+        {
+            Console.WriteLine("Test passed: Exception thrown for unsupported currency.");
+        }
 
         // Test 1: USD to EUR
         string log1;
