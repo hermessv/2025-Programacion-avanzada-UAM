@@ -14,8 +14,21 @@ class Program
             // Direct rate example
             { "USD/GBP", 0.8m },
             // Inverse rate example (no direct USD/CHF, but CHF/USD exists)
-            { "CHF/USD", 1.1m }
+            { "CHF/USD", 1.1m },
+            // Add GBP as a base for intermediate test
+            { "GBP", 0.8m }
         };
+    // Test 9: Intermediate currency path (USD -> GBP -> EUR)
+    string log9;
+    decimal result9 = ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "USD", "EUR", exchangeRates, out log9);
+    Console.WriteLine($"100 USD to EUR (via GBP): {result9} (Expected: 95)");
+    Console.WriteLine(log9);
+
+    // Test 10: Rounding check (should round to 2 decimals)
+    string log10;
+    decimal result10 = ConvertidorDeMonedas.MiConvertidorDeMonedas(123.456m, "USD", "EUR", exchangeRates, out log10);
+    Console.WriteLine($"123.456 USD to EUR (rounded): {result10} (Expected: 117.28)");
+    Console.WriteLine(log10);
         // Test 6: Direct rate USD to GBP
         string log6;
         decimal result6 = ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "USD", "GBP", exchangeRates, out log6);
