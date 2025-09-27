@@ -14,25 +14,34 @@ class Program
         };
 
         // Test 1: USD to EUR
-        decimal result1 = ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "USD", "EUR", exchangeRates);
+        string log1;
+        decimal result1 = ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "USD", "EUR", exchangeRates, out log1);
         Console.WriteLine($"100 USD to EUR: {result1} (Expected: 95)");
+        Console.WriteLine(log1);
 
         // Test 2: EUR to MXN
-        decimal result2 = ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "EUR", "MXN", exchangeRates);
+        string log2;
+        decimal result2 = ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "EUR", "MXN", exchangeRates, out log2);
         Console.WriteLine($"100 EUR to MXN: {result2} (Expected: 1789.47)");
+        Console.WriteLine(log2);
 
         // Test 3: MXN to JPY
-        decimal result3 = ConvertidorDeMonedas.MiConvertidorDeMonedas(1000, "MXN", "JPY", exchangeRates);
+        string log3;
+        decimal result3 = ConvertidorDeMonedas.MiConvertidorDeMonedas(1000, "MXN", "JPY", exchangeRates, out log3);
         Console.WriteLine($"1000 MXN to JPY: {result3} (Expected: 8823.53)");
+        Console.WriteLine(log3);
 
         // Test 4: JPY to USD
-        decimal result4 = ConvertidorDeMonedas.MiConvertidorDeMonedas(3000, "JPY", "USD", exchangeRates);
+        string log4;
+        decimal result4 = ConvertidorDeMonedas.MiConvertidorDeMonedas(3000, "JPY", "USD", exchangeRates, out log4);
         Console.WriteLine($"3000 JPY to USD: {result4} (Expected: 20)");
+        Console.WriteLine(log4);
 
         // Test 5: Invalid currency
         try
         {
-            ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "ABC", "USD", exchangeRates);
+            string log5;
+            ConvertidorDeMonedas.MiConvertidorDeMonedas(100, "ABC", "USD", exchangeRates, out log5);
             Console.WriteLine("Test failed: Exception not thrown for invalid currency.");
         }
         catch (ArgumentException)
