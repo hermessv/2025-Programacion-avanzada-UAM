@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+class MiConvertidorDeMonedas
 {
     static void Main(string[] args)
     {
